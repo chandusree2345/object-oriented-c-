@@ -1,0 +1,12 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+
+    string res = (n%3==0)?"Divisible by 3":"Not Divisible by 3";
+    cout<<res;
+    
+    return 0;
+}
