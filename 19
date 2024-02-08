@@ -1,0 +1,28 @@
+#include<iostream>
+
+using namespace std;
+int main()
+{
+    string word;
+    cin>>word;
+
+    int size = word.length();
+
+    char reverse[size];
+    char temp[size];
+    string res;
+    int i= 0, count=0;
+    while(i<size){
+        temp[i] = word[i];
+        reverse[i] = word[size - i - 1];
+        if(temp[i]==reverse[i]){
+            count = count + 1;
+        }
+        i++;
+    }
+
+    res = (count==size)?"Palindrome":"Not Palindrome";
+    cout<<res;
+    return 0;
+}
+
