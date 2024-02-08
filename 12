@@ -1,0 +1,13 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int a,b;
+    cin>>a>>b;
+    // ternary operator
+
+    string res = (a==b)?"Equal":"Not-Equal";
+    cout<<res;
+
+    return 0;
+}
