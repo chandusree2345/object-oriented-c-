@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+
+float operation(int x, int y, int op){
+	if(op==1){
+		return x+y;
+	}
+	else if(op==2){
+		return x-y;
+	}
+	else if(op==3){
+		return x*y;
+	}
+	else if(op==4){
+		return x/y;
+	}
+	else if(op==5){
+		return x%y;
+	}
+	else{
+		return 0;
+	}
+}
+
+int main(){ // functional block main
+	
+	float a,b;
+	int op;
+	
+	cout<<"Enter 2 integers:"<<endl;
+	cin>>a>>b;
+	
+	cout<<"Enter the operation:"<<endl;
+	cout<<"Addition: 1 "<<"Subtraction: 2 "<<"Multiplication: 3 "<<"Division: 4 "<<"Modulus: 5 "<<endl;
+	cin>>op;
+	
+	cout<<operation(a,b,op);
+	
+}
+
+
+
+	cout<<result;
+	
+    return 0;
+}
