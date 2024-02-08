@@ -1,0 +1,41 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    cout<<"Enter the numbers: \n";
+    double num1,num2;
+    cin>>num1>>num2;
+
+    int op;
+    cout<<"Enter the Operation -> 1[+],2[-],3[*],4[/],5[%]:  \n";
+    cin>>op;
+
+    switch (op)
+    {
+    case 1:
+        cout<<num1+num2;
+        break;
+    
+    case 2:
+        cout<<num1-num2;
+        break;
+
+    case 3:
+        cout<<num1*num2;
+        break;
+
+    case 4:
+        cout<<num1/num2;
+        break;
+
+    case 5:
+        cout<<int(num1)%int(num2);
+        break;
+
+    default:
+        break;
+    }
+
+
+    return 0;
+}
