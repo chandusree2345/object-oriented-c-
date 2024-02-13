@@ -1,0 +1,31 @@
+//narcissistic number
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int Count(int number){
+    int c = 0;
+    while(number!=0){
+        number = number / 10;
+        c++;
+    }
+    return c;
+}
+
+int main()
+{
+    int n,count, sum = 0;
+    cin>>n;
+    int num = n;
+    count = Count(n);
+
+    while(n!=0){
+        int temp = n % 10;
+        sum = sum + pow(temp,count);
+        n = n / 10;
+    }
+    string result = (sum==num)?"Narcissistic":"Not Narcissistic";
+    cout<<result;
+
+    return 0;
+}
