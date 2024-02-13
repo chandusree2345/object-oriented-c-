@@ -1,0 +1,21 @@
+//armstrong
+
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int num = n;
+    int arm = 0;
+
+    while(n!=0){
+        int temp = n%10;
+        arm = arm + temp*temp*temp;
+        n=n/10;
+    }
+    string result = (arm==num)?"Armstrong":"Not Armstrong";
+    cout<<result;
+
+    return 0;
+}
