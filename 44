@@ -1,0 +1,40 @@
+//Create a dynamic 2D (Two dimensional) array using pointers and display the values
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Set the dimensions of the 2D array
+    int rows = 3;
+    int cols = 4;
+
+    // Dynamically allocate memory for a 2D array
+    int **arr2D = new int*[rows]; // Create an array of row pointers
+
+    for (int i = 0; i < rows; ++i) {
+        arr2D[i] = new int[cols]; // Allocate memory for each row
+    }
+
+    // Initialize the 2D array with some values
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            arr2D[i][j] = i * 10 + j; // You can set any values you like
+        }
+    }
+
+    // Display the values in the 2D array
+    cout << "Values in the dynamic 2D array:" << std::endl;
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            std::cout << "arr2D[" << i << "][" << j << "] = " << arr2D[i][j] << std::endl;
+        }
+    }
+
+    // Don't forget to free the allocated memory
+    for (int i = 0; i < rows; ++i) {
+        delete[] arr2D[i]; // Delete each row
+    }
+    delete[] arr2D; // Delete the array of row pointers
+
+    return 0;
+}
