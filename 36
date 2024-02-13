@@ -1,0 +1,41 @@
+
+// insert an element 
+#include<iostream>
+using namespace std;
+
+void insert(int array[],int n){
+    int num,pos;
+    cout<<"Enter poition: "<<endl;
+    cin>>pos;
+    cout<<"Enter Element: "<<endl;
+    cin>>num;
+
+    for(int i=n-1;i>=pos;i--){
+        array[i+1] = array[i];
+    }
+    array[pos] = num;
+}
+
+
+
+int main()
+{
+    int n,pos,num;
+    cout<<"Enter number of elements: "<<endl;
+    cin>>n;
+
+    int array[n];
+    cout<<"Enter elements: \n";
+    for(int i=0;i<n;i++){
+        cin>>array[i];
+
+    }
+
+    cout<<"Insert an element: "<<endl;
+    insert(array,n);
+    for(int i=0;i<n+1;i++){
+        cout<<array[i]<<" ";
+    }
+
+    return 0;
+}
