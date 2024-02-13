@@ -1,0 +1,62 @@
+// add 2 matrices
+
+#include<iostream>
+using namespace std;
+int main()
+{
+    int rows,cols;
+    cout<<"Enter number of rows and columns: "<<endl;
+    cin>>rows>>cols;
+
+    int **array1 = new int*[rows];
+    int **array2 = new int*[rows];
+    int **result = new int*[rows];
+
+    for(int i=0;i<rows;i++){
+        array1[i] = new int[cols];
+        array2[i] = new int[cols];
+        result[i] = new int[cols];
+    }
+
+    cout<<"Enter elements in array1: "<<endl;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cin>>array1[i][j];
+        }
+    }
+
+    cout<<endl;
+    cout<<"Enter elements in array2: "<<endl;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cin>>array2[i][j];
+        }
+    }
+
+    cout<<"Elements of array1 are "<<endl;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cout<<array1[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+    cout<<"Elements of array2 are "<<endl;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cout<<array2[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+    cout<<"Addition of 2 arrays is "<<endl;
+    for(int i=0;i<rows;i++){
+        for(int j=0;j<cols;j++){
+            cout<<array1[i][j] + array2[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+
+    return 0;
+}
