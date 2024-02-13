@@ -1,0 +1,31 @@
+//merge 2 array
+
+#include<iostream>
+using namespace std;
+
+void array_input(int array[], int size)
+{
+    for(int i=0;i<size;i++){
+        cin>>array[i];
+    }
+}
+
+int main()
+{   int n,m;
+    cout<<"Enter the Number of Elments in Both Array:[2 Inputs] "<<endl;
+    cin>>n>>m;
+    int a1[n],a2[m],merge[m+n];
+    cout<<"Enter elements in array 1: "<<endl;
+    array_input(a1,n);
+    cout<<"Enter elements in array 2: "<<endl;
+    array_input(a2,m);
+
+    for(int i=0;i<n+m;i++){
+        merge[i] = (i<n) ? a1[i] : a2[i-n];
+    }
+
+    for(int i=0;i<n+m;i++){
+        cout<<merge[i]<<" ";
+    }
+    return 0;
+}
