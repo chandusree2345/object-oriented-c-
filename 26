@@ -1,0 +1,30 @@
+//strong or not strong
+
+#include<iostream>
+using namespace std;
+
+int fact(int num){
+    int fac = num;
+    if(num!=0){
+        return fac*fact(num-1);
+    }
+    return 1;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int num=n;
+    int sum = 0;
+
+    while(n!=0){
+        int temp = n%10;
+        sum = sum + fact(temp);
+        n = n/10;
+    }
+    string result = (num==sum)?"Strong":"Not-Strong";
+    cout<<result;
+
+    return 0;
+}
