@@ -1,0 +1,18 @@
+// abundance number
+#include<iostream>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int sum = 0;
+    for(int i=1;i<n;i++){
+        if(n%i==0){
+            sum = sum + i;
+        }
+    }
+    string result = (sum-n>0)?"Abundant Number":"Not Abundant Number";
+    cout<<result;
+    
+    return 0;
+}
