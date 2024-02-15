@@ -1,0 +1,26 @@
+// Check whether the string is palindrome or not
+
+#include<iostream>
+using namespace std;
+
+int palindrome(string word){
+    string rev = word;
+    for(int i=0,j=word.size()-1;i<j;i++,j--){
+        rev[i] = rev[j];
+    }
+    int result = (rev==word)?1:2;
+    return result;
+}
+int main()
+{
+    string word;
+    cin>>word;
+
+    if(palindrome(word)==1){
+        cout<<"Palindrome"<<endl;
+    }
+    else{
+        cout<<"Not a Palindrome"<<endl;
+    }
+    return 0;
+}
