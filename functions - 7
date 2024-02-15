@@ -1,0 +1,22 @@
+
+//Convert Celsius and Fahrenheit using function
+
+// 9(c-5) + 32 = f
+
+#include<iostream>
+using namespace std;
+
+float Fahrenheit(float celcius){
+    int f = 9*(celcius - 5) + 32;
+    return f;
+}
+
+int main()
+{
+    float celcius;
+    cin>>celcius;
+
+    cout<<"The Fahrenheit value is "<<Fahrenheit(celcius);
+
+    return 0;
+}
