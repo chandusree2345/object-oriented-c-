@@ -1,0 +1,20 @@
+//Find the area of a circle using function
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+float area(float num){
+    cout<<"Area of Circle is "<<endl;
+    return M_PI*num*num;
+}
+int main()
+{
+
+    cout<<"Enter Number "<<endl;
+    float number;
+    cin>>number;
+
+    cout<<area(number);
+
+    return 0;
+}
