@@ -1,0 +1,19 @@
+#include <iostream>
+
+int main() {
+    // Declare variables
+    int number;
+
+    // Prompt the user to enter an integer
+    std::cout << "Enter an integer: ";
+    std::cin >> number;
+
+    // Check if the number is odd using the bitwise AND operator
+    if (number & 1) {
+        std::cout << number << " is an odd number." << std::endl;
+    } else {
+        std::cout << number << " is not an odd number." << std::endl;
+    }
+
+    return 0;
+}
