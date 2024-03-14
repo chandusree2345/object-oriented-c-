@@ -1,0 +1,23 @@
+class Rectangle:
+    def __init__(self, width, height, x, y):
+        self.width = width
+        self.height = height
+        self.coordinates = [x, y]
+
+    def set_coordinates(self, x, y):
+        self.coordinates = [x, y]
+
+    def get_coordinates(self):
+        return tuple(self.coordinates)
+
+    def area(self):
+        return self.width * self.height
+
+
+# Example usage:
+rect = Rectangle(5, 3, 2, 4)
+print("Coordinates:", rect.get_coordinates())  # Output: (2, 4)
+
+# Change coordinates
+rect.set_coordinates(3, 5)
+print("New Coordinates:", rect.get_coordinates())  # Output: (3, 5)
