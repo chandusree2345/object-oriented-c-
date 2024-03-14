@@ -1,0 +1,26 @@
+#include <iostream>
+
+// Function prototype returning a reference to an integer variable
+int& modifyValue(int& num);
+
+int main() {
+    int number = 10;
+
+    std::cout << "Before modification: " << number << std::endl;
+
+    // Calling the function to modify the value of 'number'
+    modifyValue(number) = 20;
+
+    std::cout << "After modification: " << number << std::endl;
+
+    return 0;
+}
+
+// Function implementation returning a reference to an integer variable
+int& modifyValue(int& num) {
+    // Increment the value of the integer variable
+    num++;
+
+    // Returning a reference to the integer variable
+    return num;
+}
