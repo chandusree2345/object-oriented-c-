@@ -1,0 +1,46 @@
+#include <iostream>
+
+class Rectangle {
+private:
+    double length;
+    double width;
+
+public:
+    // Constructor
+    Rectangle() {
+        length = 0.0;
+        width = 0.0;
+    }
+
+    // Setter functions
+    void setLength(double len) {
+        length = len;
+    }
+
+    void setWidth(double wid) {
+        width = wid;
+    }
+
+    // Getter functions
+    double getLength() const {
+        return length;
+    }
+
+    double getWidth() const {
+        return width;
+    }
+};
+
+int main() {
+    Rectangle rect;
+
+    // Set length and width
+    rect.setLength(5.0);
+    rect.setWidth(3.0);
+
+    // Get length and width and print
+    std::cout << "Length: " << rect.getLength() << std::endl;
+    std::cout << "Width: " << rect.getWidth() << std::endl;
+
+    return 0;
+}
