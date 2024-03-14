@@ -1,0 +1,34 @@
+#include <iostream>
+
+// Template function prototype
+template<typename T>
+T average(const T arr[], int size);
+
+int main() {
+    // Test with integer array
+    int intArr[] = {1, 2, 3, 4, 5};
+    int intSize = sizeof(intArr) / sizeof(intArr[0]);
+    std::cout << "Average of integers: " << average(intArr, intSize) << std::endl;
+
+    // Test with double array
+    double doubleArr[] = {1.5, 2.5, 3.5, 4.5, 5.5};
+    int doubleSize = sizeof(doubleArr) / sizeof(doubleArr[0]);
+    std::cout << "Average of doubles: " << average(doubleArr, doubleSize) << std::endl;
+
+    // Test with char array
+    char charArr[] = {'a', 'b', 'c', 'd', 'e'};
+    int charSize = sizeof(charArr) / sizeof(charArr[0]);
+    std::cout << "Average of chars: " << average(charArr, charSize) << std::endl;
+
+    return 0;
+}
+
+// Template function definition
+template<typename T>
+T average(const T arr[], int size) {
+    T sum = 0;
+    for (int i = 0; i < size; ++i) {
+        sum += arr[i];
+    }
+    return sum / size;
+}
