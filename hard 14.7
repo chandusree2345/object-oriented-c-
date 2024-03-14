@@ -1,0 +1,39 @@
+#include <iostream>
+#include <utility>
+
+std::pair<int, int>& findMaxMin(const int* arr, int size) {
+    if (size == 0) {
+        std::cerr << "Array is empty!" << std::endl;
+        exit(1);
+    }
+
+    int max = arr[0];
+    int min = arr[0];
+
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+    }
+
+    static std::pair<int, int> result; // Static to ensure memory is not deallocated after function exits
+    result.first = max;
+    result.second = min;
+
+    return result;
+}
+
+int main() {
+    int arr[] = {5, 2, 9, 1, 7, 3};
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    std::pair<int, int>& result = findMaxMin(arr, size);
+
+    std::cout << "Maximum element: " << result.first << std::endl;
+    std::cout << "Minimum element: " << result.second << std::endl;
+
+    return 0;
+}
