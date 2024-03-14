@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cmath>
+
+// Function to calculate the area of a rectangle
+double area(double length, double width) {
+    return length * width;
+}
+
+// Function to calculate the area of a circle
+double area(double radius) {
+    const double pi = 3.14159;
+    return pi * pow(radius, 2);
+}
+
+int main() {
+    double length, width, radius;
+    
+    // Input for rectangle
+    std::cout << "Enter length and width of the rectangle: ";
+    std::cin >> length >> width;
+    
+    // Calculate area of the rectangle and print
+    std::cout << "Area of the rectangle: " << area(length, width) << std::endl;
+    
+    // Input for circle
+    std::cout << "Enter radius of the circle: ";
+    std::cin >> radius;
+    
+    // Calculate area of the circle and print
+    std::cout << "Area of the circle: " << area(radius) << std::endl;
+
+    return 0;
+}
