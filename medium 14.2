@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int id;
+    int grades[3]; // Assuming 3 subjects
+
+public:
+    // Constructor
+    Student() {}
+
+    // Member functions to set student details
+    void setName(const string& newName) {
+        name = newName;
+    }
+
+    void setId(int newId) {
+        id = newId;
+    }
+
+    void setGrades(int grade1, int grade2, int grade3) {
+        grades[0] = grade1;
+        grades[1] = grade2;
+        grades[2] = grade3;
+    }
+
+    // Member functions to get student details
+    string getName() const {
+        return name;
+    }
+
+    int getId() const {
+        return id;
+    }
+
+    int getGrade(int index) const {
+        if (index >= 0 && index < 3)
+            return grades[index];
+        else
+            return -1; // Return an invalid grade if index is out of range
+    }
+};
+
+int main() {
+    // Create an instance of the Student class
+    Student student;
+
+    // Set student details
+    student.setName("John Doe");
+    student.setId(123456);
+    student.setGrades(85, 90, 95);
+
+    // Get and display student details
+    cout << "Student Name: " << student.getName() << endl;
+    cout << "Student ID: " << student.getId() << endl;
+    cout << "Grades:" << endl;
+    cout << "Subject 1: " << student.getGrade(0) << endl;
+    cout << "Subject 2: " << student.getGrade(1) << endl;
+    cout << "Subject 3: " << student.getGrade(2) << endl;
+
+    return 0;
+}
