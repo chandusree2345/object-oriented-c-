@@ -1,0 +1,53 @@
+#include <iostream>
+
+using namespace std;
+
+class Complex;
+
+class Matrix {
+public:
+    // Function to multiply a Complex number with a constant
+    static Complex& multiplyComplexWithConstant(Complex& c, double constant);
+};
+
+class Complex {
+private:
+    double real;
+    double imag;
+
+public:
+    // Constructor
+    Complex(double r = 0.0, double i = 0.0) : real(r), imag(i) {}
+
+    // Friend declaration to allow Matrix to access private members
+    friend class Matrix;
+
+    // Display function
+    void display() const {
+        cout << real << " + " << imag << "i";
+    }
+};
+
+// Definition of the static member function in Matrix class
+Complex& Matrix::multiplyComplexWithConstant(Complex& c, double constant) {
+    c.real *= constant;
+    c.imag *= constant;
+    return c;
+}
+
+int main() {
+    Complex c1(2.0, 3.0);
+    
+    cout << "Original Complex Number: ";
+    c1.display();
+    cout << endl;
+
+    // Multiply complex number c1 with a constant
+    Matrix::multiplyComplexWithConstant(c1, 2.5);
+
+    cout << "Result after multiplication: ";
+    c1.display();
+    cout << endl;
+
+    return 0;
+}
