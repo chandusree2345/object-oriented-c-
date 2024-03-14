@@ -1,0 +1,19 @@
+#include <iostream>
+
+// Function prototype
+int addNumbers(int a, int b);
+
+int main() {
+    int num1 = 5;
+    int num2 = 7;
+    
+    // Calling the addNumbers function and printing the result
+    std::cout << "The sum of " << num1 << " and " << num2 << " is: " << addNumbers(num1, num2) << std::endl;
+    
+    return 0;
+}
+
+// Function implementation
+int addNumbers(int a, int b) {
+    return a + b;
+}
