@@ -1,0 +1,94 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+class Employee {
+private:
+    int id;
+    std::string name;
+    double salary;
+    static std::vector<Employee*> employees; // Static vector to hold pointers to all employee objects
+
+public:
+    Employee(int id, const std::string& name, double salary) : id(id), name(name), salary(salary) {
+        employees.push_back(this); // Add pointer to this object to the static vector
+    }
+
+    // Static member function to calculate the total salary of all employees
+    static double calculateTotalSalary() {
+        double totalSalary = 0;
+        for (const auto& emp : employees) {
+            totalSalary += emp->salary;
+        }
+        return totalSalary;
+    }
+
+    // Getter functions
+    int getId() const {
+        return id;
+    }
+
+    std::string getName() const {
+        return name;
+    }
+
+    double getSalary() const {
+        return salary;
+    }
+
+    // Setter functions
+    void setId(int newId) {
+        id = newId;
+    }
+
+    void setName(const std::string& newName) {
+        name = newName;
+    }
+
+    void setSalary(double newSalary) {
+        salary = newSalary;
+    }
+
+    // Destructor to remove the pointer from the static vector when an object is destroyed
+    ~Employee() {
+        for (auto it = employees.begin(); it != employees.end(); ++it) {
+            if (*it == this) {
+                employees.erase(it);
+                break;
+            }
+        }
+    }
+};
+
+// Initializing the static vector
+std::vector<Employee*> Employee::employees;
+
+int main() {
+    // Create some Employee objects
+    Employee emp1(1, "John", 50000);
+    Employee emp2(2, "Alice", 60000);
+    Employee emp3(3, "Bob", 70000);
+
+    // Display employee details
+    std::cout << "Employee Details:" << std::endl;
+    std::cout << "ID\tName\tSalary" << std::endl;
+    std::cout << emp1.getId() << "\t" << emp1.getName() << "\t" << emp1.getSalary() << std::endl;
+    std::cout << emp2.getId() << "\t" << emp2.getName() << "\t" << emp2.getSalary() << std::endl;
+    std::cout << emp3.getId() << "\t" << emp3.getName() << "\t" << emp3.getSalary() << std::endl;
+
+    // Update employee details
+    emp1.setSalary(55000);
+    emp2.setName("Alice Johnson");
+
+    // Display updated employee details
+    std::cout << "\nUpdated Employee Details:" << std::endl;
+    std::cout << "ID\tName\tSalary" << std::endl;
+    std::cout << emp1.getId() << "\t" << emp1.getName() << "\t" << emp1.getSalary() << std::endl;
+    std::cout << emp2.getId() << "\t" << emp2.getName() << "\t" << emp2.getSalary() << std::endl;
+    std::cout << emp3.getId() << "\t" << emp3.getName() << "\t" << emp3.getSalary() << std::endl;
+
+    // Calculate and display total salary of all employees
+    std::cout << "\nTotal Salary of All Employees: $" << Employee::calculateTotalSalary() << std::endl;
+
+    return 0;
+}
