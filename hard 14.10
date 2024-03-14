@@ -1,0 +1,100 @@
+#include <iostream>
+
+// Forward declaration of Pair class
+template<typename T>
+class Pair;
+
+// Generic swapValues function declaration
+template<typename T>
+void swapValues(Pair<T>& pair1, Pair<T>& pair2);
+
+// Pair class definition
+template<typename T>
+class Pair {
+private:
+    T first;
+    T second;
+
+public:
+    Pair(T f, T s) : first(f), second(s) {}
+
+    // Friend function declaration for swapping values
+    friend void swapValues<T>(Pair<T>& pair1, Pair<T>& pair2);
+
+    // Method to display the pair
+    void display() const {
+        std::cout << "(" << first << ", " << second << ")";
+    }
+};
+
+// Template specialization for swapping Pair<int> objects
+template<>
+void swapValues<int>(Pair<int>& pair1, Pair<int>& pair2) {
+    int temp = pair1.first;
+    pair1.first = pair2.first;
+    pair2.first = temp;
+
+    temp = pair1.second;
+    pair1.second = pair2.second;
+    pair2.second = temp;
+}
+
+// Template specialization for swapping Pair<double> objects
+template<>
+void swapValues<double>(Pair<double>& pair1, Pair<double>& pair2) {
+    double temp = pair1.first;
+    pair1.first = pair2.first;
+    pair2.first = temp;
+
+    temp = pair1.second;
+    pair1.second = pair2.second;
+    pair2.second = temp;
+}
+
+int main() {
+    // Test with Pair<int>
+    Pair<int> intPair1(10, 20);
+    Pair<int> intPair2(30, 40);
+
+    std::cout << "Before swapping (Pair<int>):" << std::endl;
+    std::cout << "Pair 1: ";
+    intPair1.display();
+    std::cout << std::endl;
+    std::cout << "Pair 2: ";
+    intPair2.display();
+    std::cout << std::endl;
+
+    swapValues(intPair1, intPair2);
+
+    std::cout << "\nAfter swapping (Pair<int>):" << std::endl;
+    std::cout << "Pair 1: ";
+    intPair1.display();
+    std::cout << std::endl;
+    std::cout << "Pair 2: ";
+    intPair2.display();
+    std::cout << std::endl;
+
+    // Test with Pair<double>
+    Pair<double> doublePair1(3.14, 2.71);
+    Pair<double> doublePair2(1.618, 0.577);
+
+    std::cout << "\nBefore swapping (Pair<double>):" << std::endl;
+    std::cout << "Pair 1: ";
+    doublePair1.display();
+    std::cout << std::endl;
+    std::cout << "Pair 2: ";
+    doublePair2.display();
+    std::cout << std::endl;
+
+    swapValues(doublePair1, doublePair2);
+
+    std::cout << "\nAfter swapping (Pair<double>):" << std::endl;
+    std::cout << "Pair 1: ";
+    doublePair1.display();
+    std::cout << std::endl;
+    std::cout << "Pair 2: ";
+    doublePair2.display();
+    std::cout << std::endl;
+
+    return 0;
+}
