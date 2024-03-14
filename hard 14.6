@@ -1,0 +1,27 @@
+#include <iostream>
+
+// Function to calculate the factorial of a number using call by reference
+void factorial(int n, int &result, int start = 1) {
+    result = 1; // Initialize result to 1
+
+    // Calculate factorial
+    for (int i = start; i <= n; ++i) {
+        result *= i;
+    }
+}
+
+int main() {
+    int number, result;
+
+    // Input the number for which factorial needs to be calculated
+    std::cout << "Enter a number: ";
+    std::cin >> number;
+
+    // Calculate factorial using default start value (1)
+    factorial(number, result);
+
+    // Output the factorial
+    std::cout << "Factorial of " << number << " is: " << result << std::endl;
+
+    return 0;
+}
