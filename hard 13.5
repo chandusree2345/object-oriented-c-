@@ -1,0 +1,115 @@
+#include <iostream>
+#include <stack>
+#include <string>
+#include <cmath>
+#include <cctype>
+
+using namespace std;
+
+// Function to check if a character is an operator
+bool isOperator(char c) {
+    return c == '+' || c == '-' || c == '*' || c == '/' || c == '^';
+}
+
+// Function to get the precedence of an operator
+int precedence(char op) {
+    if (op == '^')
+        return 3;
+    else if (op == '*' || op == '/')
+        return 2;
+    else if (op == '+' || op == '-')
+        return 1;
+    else
+        return -1;
+}
+
+// Function to perform the operation
+double performOperation(double operand1, double operand2, char op) {
+    switch(op) {
+        case '+':
+            return operand1 + operand2;
+        case '-':
+            return operand1 - operand2;
+        case '*':
+            return operand1 * operand2;
+        case '/':
+            if (operand2 == 0) {
+                cout << "Error: Division by zero!" << endl;
+                exit(1);
+            }
+            return operand1 / operand2;
+        case '^':
+            return pow(operand1, operand2);
+        default:
+            return 0.0;
+    }
+}
+
+// Function to evaluate the postfix expression
+double evaluatePostfix(const string& expression) {
+    stack<double> operands;
+    
+    for (char c : expression) {
+        if (isdigit(c)) {
+            operands.push(c - '0');
+        } else if (isOperator(c)) {
+            double operand2 = operands.top();
+            operands.pop();
+            double operand1 = operands.top();
+            operands.pop();
+            double result = performOperation(operand1, operand2, c);
+            operands.push(result);
+        }
+    }
+    
+    return operands.top();
+}
+
+// Function to convert infix expression to postfix expression
+string infixToPostfix(const string& expression) {
+    string postfix;
+    stack<char> operators;
+
+    for (char c : expression) {
+        if (isspace(c)) {
+            continue;
+        } else if (isdigit(c)) {
+            postfix += c;
+        } else if (c == '(') {
+            operators.push(c);
+        } else if (c == ')') {
+            while (!operators.empty() && operators.top() != '(') {
+                postfix += operators.top();
+                operators.pop();
+            }
+            operators.pop(); // Discard the '('
+        } else if (isOperator(c)) {
+            while (!operators.empty() && precedence(c) <= precedence(operators.top())) {
+                postfix += operators.top();
+                operators.pop();
+            }
+            operators.push(c);
+        }
+    }
+
+    while (!operators.empty()) {
+        postfix += operators.top();
+        operators.pop();
+    }
+
+    return postfix;
+}
+
+int main() {
+    string expression;
+    cout << "Enter a mathematical expression: ";
+    getline(cin, expression);
+
+    string postfixExpression = infixToPostfix(expression);
+    cout << "Postfix expression: " << postfixExpression << endl;
+
+    double result = evaluatePostfix(postfixExpression);
+    cout << "Result: " << result << endl;
+
+    return 0;
+}
