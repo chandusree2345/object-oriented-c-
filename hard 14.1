@@ -1,0 +1,73 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+// Function prototypes
+double calculateArea(double length, double width);
+double calculatePerimeter(double length, double width);
+
+double calculateArea(double radius);
+double calculatePerimeter(double radius);
+
+double calculateArea(double side1, double side2, double side3);
+double calculatePerimeter(double side1, double side2, double side3);
+
+int main() {
+    // Rectangle calculations
+    double rectangleLength, rectangleWidth;
+    cout << "Enter length and width of the rectangle: ";
+    cin >> rectangleLength >> rectangleWidth;
+
+    cout << "Area of the rectangle: " << calculateArea(rectangleLength, rectangleWidth) << endl;
+    cout << "Perimeter of the rectangle: " << calculatePerimeter(rectangleLength, rectangleWidth) << endl;
+
+    // Circle calculations
+    double circleRadius;
+    cout << "\nEnter the radius of the circle: ";
+    cin >> circleRadius;
+
+    cout << "Area of the circle: " << calculateArea(circleRadius) << endl;
+    cout << "Circumference of the circle: " << calculatePerimeter(circleRadius) << endl;
+
+    // Triangle calculations
+    double triangleSide1, triangleSide2, triangleSide3;
+    cout << "\nEnter the lengths of the sides of the triangle: ";
+    cin >> triangleSide1 >> triangleSide2 >> triangleSide3;
+
+    cout << "Area of the triangle: " << calculateArea(triangleSide1, triangleSide2, triangleSide3) << endl;
+    cout << "Perimeter of the triangle: " << calculatePerimeter(triangleSide1, triangleSide2, triangleSide3) << endl;
+
+    return 0;
+}
+
+// Rectangle area calculation
+double calculateArea(double length, double width) {
+    return length * width;
+}
+
+// Rectangle perimeter calculation
+double calculatePerimeter(double length, double width) {
+    return 2 * (length + width);
+}
+
+// Circle area calculation
+double calculateArea(double radius) {
+    return M_PI * radius * radius;
+}
+
+// Circle circumference calculation
+double calculatePerimeter(double radius) {
+    return 2 * M_PI * radius;
+}
+
+// Triangle area calculation (using Heron's formula)
+double calculateArea(double side1, double side2, double side3) {
+    double s = (side1 + side2 + side3) / 2;
+    return sqrt(s * (s - side1) * (s - side2) * (s - side3));
+}
+
+// Triangle perimeter calculation
+double calculatePerimeter(double side1, double side2, double side3) {
+    return side1 + side2 + side3;
+}
