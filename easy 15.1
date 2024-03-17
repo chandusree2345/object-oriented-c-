@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+class Car {
+private:
+    std::string model;
+
+public:
+    // Constructor to initialize model to "Unknown"
+    Car() : model("Unknown") {}
+
+    // Method to get the model of the car
+    std::string getModel() const {
+        return model;
+    }
+};
+
+int main() {
+    // Create an object of the Car class
+    Car myCar;
+
+    // Display the model of the car
+    std::cout << "Model of the car: " << myCar.getModel() << std::endl;
+
+    return 0;
+}
