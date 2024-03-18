@@ -1,0 +1,45 @@
+#include <iostream>
+
+// Function to swap two integers using pointers
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Class Circle with a private member radius
+class Circle {
+private:
+    double radius;
+
+public:
+    // Constructor
+    Circle(double r) {
+        radius = r;
+    }
+
+    // Function to calculate area
+    double calculateArea() {
+        return 3.14159 * radius * radius;
+    }
+};
+
+int main() {
+    // Swapping two integers
+    int num1 = 5, num2 = 10;
+    std::cout << "Before swapping: num1 = " << num1 << ", num2 = " << num2 << std::endl;
+    swap(&num1, &num2);
+    std::cout << "After swapping: num1 = " << num1 << ", num2 = " << num2 << std::endl;
+
+    // Finding the area of a circle using a pointer to the object
+    double radius;
+    std::cout << "Enter the radius of the circle: ";
+    std::cin >> radius;
+
+    Circle circle(radius);
+    Circle *ptr = &circle;
+
+    std::cout << "Area of the circle: " << ptr->calculateArea() << std::endl;
+
+    return 0;
+}
