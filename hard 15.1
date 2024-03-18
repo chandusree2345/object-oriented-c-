@@ -1,0 +1,74 @@
+#include <iostream>
+
+class Matrix {
+private:
+    int rows;
+    int columns;
+    int** data;
+
+public:
+    // Parameterized constructor
+    Matrix(int r, int c) : rows(r), columns(c) {
+        // Allocate memory for the matrix
+        data = new int*[rows];
+        for (int i = 0; i < rows; ++i) {
+            data[i] = new int[columns];
+        }
+    }
+
+    // Copy constructor (deep copy)
+    Matrix(const Matrix& other) : rows(other.rows), columns(other.columns) {
+        // Allocate memory for the new matrix
+        data = new int*[rows];
+        for (int i = 0; i < rows; ++i) {
+            data[i] = new int[columns];
+            // Copy data from the other matrix
+            for (int j = 0; j < columns; ++j) {
+                data[i][j] = other.data[i][j];
+            }
+        }
+    }
+
+    // Destructor
+    ~Matrix() {
+        // Deallocate memory for the matrix
+        for (int i = 0; i < rows; ++i) {
+            delete[] data[i];
+        }
+        delete[] data;
+    }
+
+    // Getter methods
+    int getRows() const { return rows; }
+    int getColumns() const { return columns; }
+                std::cout << data[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+};
+
+int main() {
+    // Creating a matrix using parameterized constructor
+    Matrix matrix1(3, 3);
+
+    // Setting values in the matrix
+    for (int i = 0; i < matrix1.getRows(); ++i) {
+        for (int j = 0; j < matrix1.getColumns(); ++j) {
+            matrix1.setValue(i, j, i + j);
+        }
+    }
+
+    // Displaying the original matrix
+    std::cout << "Original Matrix:" << std::endl;
+    matrix1.display();
+
+    // Creating a copy of the original matrix using copy constructor
+    Matrix matrix2(matrix1);
+
+    // Displaying the copied matrix
+    std::cout << "\nCopied Matrix:" << std::endl;
+    matrix2.display();
+
+    return 0;
+}
