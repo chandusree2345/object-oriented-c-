@@ -1,0 +1,78 @@
+#include <iostream>
+#include <cstring> // For strlen, strcpy, strcat
+
+class String {
+private:
+    char* str;
+
+public:
+    // Default constructor
+    String() : str(nullptr) {}
+
+    // Parameterized constructor
+    String(const char* s) {
+        if (s != nullptr) {
+            str = new char[strlen(s) + 1];
+            strcpy(str, s);
+        } else {
+            str = nullptr;
+        }
+    }
+
+    // Copy constructor (deep copy)
+    String(const String& other) {
+        if (other.str != nullptr) {
+            str = new char[strlen(other.str) + 1];
+            strcpy(str, other.str);
+        } else {
+            str = nullptr;
+        }
+    }
+
+    // Destructor
+    ~String() {
+        delete[] str;
+    }
+
+    // Overloading concatenation operator (+) to concatenate two strings
+    String operator+(const String& other) const {
+        if (str == nullptr && other.str == nullptr)
+            return String();
+
+        int len1 = (str != nullptr) ? strlen(str) : 0;
+        int len2 = (other.str != nullptr) ? strlen(other.str) : 0;
+        char* newStr = new char[len1 + len2 + 1];
+
+        if (str != nullptr)
+            strcpy(newStr, str);
+        else
+            newStr[0] = '\0';
+
+        if (other.str != nullptr)
+            strcat(newStr, other.str);
+
+        return String(newStr);
+    }
+
+    // Method to display the string
+    void display() const {
+        if (str != nullptr)
+            std::cout << str;
+    }
+};
+
+int main() {
+    // Creating strings
+    String s1("Hello, ");
+    String s2("world!");
+
+    // Concatenating two strings
+    String result = s1 + s2;
+
+    // Displaying the concatenated string
+    std::cout << "Concatenated string: ";
+    result.display();
+    std::cout << std::endl;
+
+    return 0;
+}
