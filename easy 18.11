@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+
+// Class Employee with private member variables name and salary
+class Employee {
+private:
+    std::string name;
+    double salary;
+
+public:
+    // Constructor
+    Employee(std::string n, double s) {
+        name = n;
+        salary = s;
+    }
+
+    // Function to display details
+    void displayDetails() {
+        std::cout << "Employee Name: " << name << std::endl;
+        std::cout << "Employee Salary: $" << salary << std::endl;
+    }
+};
+
+int main() {
+    std::string name;
+    double salary;
+
+    std::cout << "Enter employee name: ";
+    std::getline(std::cin, name);
+    std::cout << "Enter employee salary: ";
+    std::cin >> salary;
+
+    // Creating an object of the Employee class
+    Employee employee(name, salary);
+
+    // Creating a pointer to the object
+    Employee *ptr = &employee;
+
+    // Displaying details using the pointer
+    ptr->displayDetails();
+
+    return 0;
+}
