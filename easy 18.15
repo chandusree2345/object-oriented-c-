@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+
+// Base class Person with private member variables name and age
+class Person {
+protected:
+    std::string name;
+    int age;
+
+public:
+    // Constructor
+    Person(std::string n, int a) : name(n), age(a) {}
+
+    // Virtual function for displaying details
+    virtual void display() {
+        std::cout << "Name: " << name << std::endl;
+        std::cout << "Age: " << age << std::endl;
+    }
+};
+
+// Derived class Student with its own implementation of display()
+class Student : public Person {
+public:
+    // Constructor
+    Student(std::string n, int a) : Person(n, a) {}
+
+    // Overridden display function
+    void display() override {
+        std::cout << "Student Name: " << name << std::endl;
+        std::cout << "Student Age: " << age << std::endl;
+    }
+};
+
+int main() {
+    // Creating objects of Person and Student classes
+    Person person("Alice", 30);
+    Student student("Bob", 20);
+
+    // Creating a pointer to the base class Person
+    Person *ptr;
+
+    // Pointing the pointer to the base class object and calling display()
+    ptr = &person;
+    std::cout << "Displaying details using base class pointer:" << std::endl;
+    ptr->display();  // Calls the base class version of display()
+
+    std::cout << std::endl;
+
+    // Pointing the pointer to the derived class object and calling display()
+    ptr = &student;
+    std::cout << "Displaying details using derived class pointer:" << std::endl;
+    ptr->display();  // Calls the derived class version of display()
+
+    return 0;
+}
