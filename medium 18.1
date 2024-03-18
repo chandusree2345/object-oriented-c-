@@ -1,0 +1,57 @@
+#include <iostream>
+
+// Base class Vehicle
+class Vehicle {
+protected:
+    int speed;
+    int fuel;
+
+public:
+    // Constructor to initialize speed and fuel
+    Vehicle(int s, int f) : speed(s), fuel(f) {}
+
+    // Member function to display speed and fuel
+    void displayInfo() {
+        std::cout << "Speed: " << speed << " km/h" << std::endl;
+        std::cout << "Fuel: " << fuel << " liters" << std::endl;
+    }
+};
+
+// Derived class Car from Vehicle
+class Car : public Vehicle {
+public:
+    // Constructor to initialize speed and fuel of car
+    Car(int s, int f) : Vehicle(s, f) {}
+
+    // Member function to display car's information
+    void displayInfo() {
+        std::cout << "Car Information:" << std::endl;
+        Vehicle::displayInfo(); // Call base class displayInfo()
+    }
+};
+
+// Derived class Bike from Vehicle
+class Bike : public Vehicle {
+public:
+    // Constructor to initialize speed and fuel of bike
+    Bike(int s, int f) : Vehicle(s, f) {}
+
+    // Member function to display bike's information
+    void displayInfo() {
+        std::cout << "Bike Information:" << std::endl;
+        Vehicle::displayInfo(); // Call base class displayInfo()
+    }
+};
+
+int main() {
+    // Creating objects of Car and Bike classes
+    Car car(100, 50);
+    Bike bike(80, 20);
+
+    // Displaying information of car and bike
+    car.displayInfo();
+    std::cout << std::endl;
+    bike.displayInfo();
+
+    return 0;
+}
