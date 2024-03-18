@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+
+class Employee {
+private:
+    std::string name;
+    int age;
+    double salary;
+
+public:
+    // Parameterized constructor to initialize employee details
+    Employee(const std::string& n, int a, double s) : name(n), age(a), salary(s) {}
+
+    // Overloading less than operator (<) to compare employees based on salary
+    bool operator<(const Employee& other) const {
+        return salary < other.salary;
+    }
+
+    // Overloading greater than operator (>) to compare employees based on salary
+    bool operator>(const Employee& other) const {
+        return salary > other.salary;
+    }
+
+    // Method to display employee details
+    void display() const {
+        std::cout << "Name: " << name << ", Age: " << age << ", Salary: " << salary << std::endl;
+    }
+};
+
+int main() {
+    // Creating employees
+    Employee emp1("John", 30, 50000);
+    Employee emp2("Alice", 25, 60000);
+
+    // Comparing employees based on salary
+    if (emp1 < emp2) {
+        std::cout << "Employee 1 has a lower salary than Employee 2." << std::endl;
+    } else if (emp1 > emp2) {
+        std::cout << "Employee 1 has a higher salary than Employee 2." << std::endl;
+    } else {
+        std::cout << "Both employees have the same salary." << std::endl;
+    }
+
+    return 0;
+}
