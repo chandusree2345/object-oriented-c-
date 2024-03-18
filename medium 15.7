@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+
+class Book {
+private:
+    std::string title;
+    std::string author;
+    int pages;
+
+public:
+    // Constructor
+    Book(const std::string& t, const std::string& a, int p) : title(t), author(a), pages(p) {}
+
+    // Overloading equality operator (==) to compare two books based on titles
+    bool operator==(const Book& other) const {
+        return title == other.title;
+    }
+
+    // Overloading inequality operator (!=) to compare two books based on titles
+    bool operator!=(const Book& other) const {
+        return !(*this == other); // Using previously defined == operator
+    }
+
+    // Getter methods
+    std::string getTitle() const { return title; }
+    std::string getAuthor() const { return author; }
+    int getPages() const { return pages; }
+};
+
+int main() {
+    // Creating two Book objects
+    Book book1("The Great Gatsby", "F. Scott Fitzgerald", 180);
+    Book book2("To Kill a Mockingbird", "Harper Lee", 281);
+
+    // Comparing books based on titles
+    if (book1 == book2) {
+        std::cout << "The books have the same title." << std::endl;
+    } else {
+        std::cout << "The books have different titles." << std::endl;
+    }
+
+    if (book1 != book2) {
+        std::cout << "The books have different titles." << std::endl;
+    } else {
+        std::cout << "The books have the same title." << std::endl;
+    }
+
+    return 0;
+}
