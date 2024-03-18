@@ -1,0 +1,29 @@
+from abc import ABC, abstractmethod
+import math
+
+class Shape(ABC):
+    @abstractmethod
+    def calculateArea(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def calculateArea(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def calculateArea(self):
+        return math.pi * self.radius ** 2
+
+# Example usage
+rectangle = Rectangle(5, 4)
+print("Area of Rectangle:", rectangle.calculateArea())  # Output: Area of Rectangle: 20
+
+circle = Circle(3)
+print("Area of Circle:", circle.calculateArea())  # Output: Area of Circle: 28.274333882308138
