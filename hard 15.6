@@ -1,0 +1,51 @@
+#include <iostream>
+
+class Fraction {
+private:
+    int numerator;
+    int denominator;
+
+public:
+    // Parameterized constructor
+    Fraction(int num, int denom) : numerator(num), denominator(denom) {
+        if (denominator == 0) {
+            std::cerr << "Error: Denominator cannot be zero." << std::endl;
+            // Handle error by setting denominator to 1
+            denominator = 1;
+        }
+    }
+
+    // Overloading division operator (/) to divide two fractions
+    Fraction operator/(const Fraction& other) const {
+        // Check for division by zero
+        if (other.numerator == 0) {
+            std::cerr << "Error: Division by zero." << std::endl;
+            // Return a default fraction
+            return Fraction(0, 1);
+        }
+
+        int resultNumerator = numerator * other.denominator;
+        int resultDenominator = denominator * other.numerator;
+        return Fraction(resultNumerator, resultDenominator);
+    }
+
+    // Method to display the fraction
+    void display() const {
+        std::cout << numerator << "/" << denominator << std::endl;
+    }
+};
+
+int main() {
+    // Creating fractions
+    Fraction fraction1(3, 4);
+    Fraction fraction2(1, 2);
+
+    // Dividing two fractions
+    Fraction result = fraction1 / fraction2;
+
+    // Displaying the result of division
+    std::cout << "Result of division: ";
+    result.display();
+
+    return 0;
+}
