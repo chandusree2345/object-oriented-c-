@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+
+class Student {
+private:
+    std::string name;
+    int age;
+
+public:
+    // Default constructor
+    Student() : name("Unknown"), age(0) {}
+
+    // Overloaded constructor
+    Student(const std::string& n, int a) : name(n), age(a) {}
+
+    // Function to display student details
+    void displayDetails() const {
+        std::cout << "Name: " << name << ", Age: " << age << std::endl;
+    }
+};
+
+int main() {
+    // Creating objects of Student class using both constructors
+    Student defaultStudent; // Using default constructor
+    Student customStudent("John Doe", 20); // Using overloaded constructor
+
+    // Displaying details of students
+    std::cout << "Details of Default Student:" << std::endl;
+    defaultStudent.displayDetails();
+
+    std::cout << "\nDetails of Custom Student:" << std::endl;
+    customStudent.displayDetails();
+
+    return 0;
+}
