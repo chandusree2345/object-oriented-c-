@@ -1,0 +1,25 @@
+class Vehicle:
+    def __init__(self, speed=0, fuel=0):
+        self.speed = speed
+        self.fuel = fuel
+
+class Car(Vehicle):
+    def __init__(self, speed=0, fuel=0, wheels=4):
+        super().__init__(speed, fuel)
+        self.wheels = wheels
+
+class Bike(Vehicle):
+    def __init__(self, speed=0, fuel=0, wheels=2):
+        super().__init__(speed, fuel)
+        self.wheels = wheels
+
+# Example usage
+car1 = Car(speed=60, fuel=50)
+print("Car Speed:", car1.speed)
+print("Car Fuel:", car1.fuel)
+print("Car Wheels:", car1.wheels)
+
+bike1 = Bike(speed=30, fuel=20)
+print("\nBike Speed:", bike1.speed)
+print("Bike Fuel:", bike1.fuel)
+print("Bike Wheels:", bike1.wheels)
