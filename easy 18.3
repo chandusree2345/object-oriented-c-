@@ -1,0 +1,24 @@
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+class Manager(Employee):
+    def __init__(self, name, salary, department):
+        super().__init__(name, salary)
+        self.department = department
+
+class Worker(Employee):
+    def __init__(self, name, salary):
+        super().__init__(name, salary)
+
+# Example usage:
+manager = Manager("John Doe", 50000, "HR")
+worker = Worker("Alice Smith", 30000)
+
+print("Manager:", manager.name)
+print("Manager's salary:", manager.salary)
+print("Manager's department:", manager.department)
+
+print("\nWorker:", worker.name)
+print("Worker's salary:", worker.salary)
