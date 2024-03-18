@@ -1,0 +1,71 @@
+#include <iostream>
+
+class Complex {
+private:
+    double real;
+    double imaginary;
+
+public:
+    // Constructor
+    Complex(double r = 0.0, double i = 0.0) : real(r), imaginary(i) {}
+
+    // Getter methods
+    double getReal() const { return real; }
+    double getImaginary() const { return imaginary; }
+
+    // Overloading addition operator
+    Complex operator+(const Complex& other) const {
+        return Complex(real + other.real, imaginary + other.imaginary);
+    }
+
+    // Overloading subtraction operator
+    Complex operator-(const Complex& other) const {
+        return Complex(real - other.real, imaginary - other.imaginary);
+    }
+
+    // Overloading multiplication operator
+    Complex operator*(const Complex& other) const {
+        double r = real * other.real - imaginary * other.imaginary;
+        double i = real * other.imaginary + imaginary * other.real;
+        return Complex(r, i);
+    }
+
+    // Display method
+    void display() const {
+        std::cout << real << (imaginary < 0 ? " - " : " + ") << std::abs(imaginary) << "i";
+    }
+};
+
+int main() {
+    // Demonstration of operator overloading
+    Complex c1(2.0, 3.0);
+    Complex c2(1.0, -2.0);
+
+    std::cout << "Complex number c1: ";
+    c1.display();
+    std::cout << std::endl;
+
+    std::cout << "Complex number c2: ";
+    c2.display();
+    std::cout << std::endl;
+
+    // Addition of two complex numbers
+    Complex sum = c1 + c2;
+    std::cout << "Sum of c1 and c2: ";
+    sum.display();
+    std::cout << std::endl;
+
+    // Subtraction of two complex numbers
+    Complex difference = c1 - c2;
+    std::cout << "Difference of c1 and c2: ";
+    difference.display();
+    std::cout << std::endl;
+
+    // Multiplication of two complex numbers
+    Complex product = c1 * c2;
+    std::cout << "Product of c1 and c2: ";
+    product.display();
+    std::cout << std::endl;
+
+    return 0;
+}
