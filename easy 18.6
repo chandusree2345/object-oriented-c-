@@ -1,0 +1,18 @@
+class Bird:
+    def fly(self):
+        raise NotImplementedError("Subclasses must implement fly()")
+
+class Eagle(Bird):
+    def fly(self):
+        return "Eagle flies high in the sky."
+
+class Sparrow(Bird):
+    def fly(self):
+        return "Sparrow flies swiftly between branches."
+
+# Example usage
+eagle = Eagle()
+print(eagle.fly())  # Output: Eagle flies high in the sky.
+
+sparrow = Sparrow()
+print(sparrow.fly())  # Output: Sparrow flies swiftly between branches.
