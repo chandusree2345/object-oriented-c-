@@ -1,0 +1,34 @@
+#include <iostream>
+
+class Counter {
+private:
+    int count;
+
+public:
+    // Default constructor
+    Counter() : count(0) {}
+
+    // Prefix increment operator (++count)
+    Counter& operator++() {
+        ++count;
+        return *this;
+    }
+
+    // Getter method to access count
+    int getCount() const {
+        return count;
+    }
+};
+
+int main() {
+    // Creating a Counter object
+    Counter counter;
+
+    // Incrementing the counter using prefix increment operator
+    ++counter;
+
+    // Displaying the count
+    std::cout << "Count after increment: " << counter.getCount() << std::endl;
+
+    return 0;
+}
