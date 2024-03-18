@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+#include <algorithm> // For reverse
+
+class BigInt {
+private:
+    std::string value;
+
+public:
+    // Parameterized constructor to initialize with a string representation
+    BigInt(const std::string& str) : value(str) {}
+
+    // Overloading addition operator (+) to add two BigIntegers
+    BigInt operator+(const BigInt& other) const {
+        std::string result;
+        int carry = 0;
+
+        int i = value.length() - 1;
+        int j = other.value.length() - 1;
+
+        while (i >= 0 || j >= 0 || carry) {
+            int sum = carry;
+            if (i >= 0)
+                sum += value[i--] - '0';
+            if (j >= 0)
+                sum += other.value[j--] - '0';
+
+            result.push_back(sum % 10 + '0');
+            carry = sum / 10;
+        }
+
+        // Reverse the result string
+        std::reverse(result.begin(), result.end());
+
+        return BigInt(result);
+    }
+
+    // Method to display the BigInt
+    void display() const {
+        std::cout << value << std::endl;
+    }
+};
+
+int main() {
+    // Creating BigIntegers
+    BigInt num1("12345678901234567890");
+    BigInt num2("98765432109876543210");
+
+    // Adding two BigIntegers
+    BigInt sum = num1 + num2;
+
+    // Displaying the result of addition
+    std::cout << "Result of addition: ";
+    sum.display();
+
+    return 0;
+}
