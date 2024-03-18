@@ -1,0 +1,104 @@
+#include <iostream>
+
+class BinarySearchTree {
+private:
+    struct Node {
+        int data;
+        Node* left;
+        Node* right;
+
+        Node(int val) : data(val), left(nullptr), right(nullptr) {}
+    };
+
+    Node* root;
+
+    // Helper function for deep copy
+    Node* copyTree(Node* originalNode) {
+        if (originalNode == nullptr)
+            return nullptr;
+
+        Node* newNode = new Node(originalNode->data);
+        newNode->left = copyTree(originalNode->left);
+        newNode->right = copyTree(originalNode->right);
+        return newNode;
+    }
+
+public:
+    // Constructor
+    BinarySearchTree() : root(nullptr) {}
+
+    // Copy constructor (deep copy)
+    BinarySearchTree(const BinarySearchTree& other) {
+        root = copyTree(other.root);
+    }
+
+    // Destructor
+    ~BinarySearchTree() {
+        destroyTree(root);
+    }
+
+    // Helper function to recursively destroy the tree
+    void destroyTree(Node* node) {
+        if (node == nullptr)
+            return;
+        destroyTree(node->left);
+        destroyTree(node->right);
+        delete node;
+    }
+
+    // Method to insert a value into the tree
+    void insert(int value) {
+        root = insertNode(root, value);
+    }
+
+    // Helper function to recursively insert a value into the tree
+    Node* insertNode(Node* node, int value) {
+        if (node == nullptr)
+            return new Node(value);
+
+        if (value < node->data)
+            node->left = insertNode(node->left, value);
+        else if (value > node->data)
+            node->right = insertNode(node->right, value);
+
+        return node;
+    }
+
+    // Method to display the tree using inorder traversal
+    void displayInOrder() const {
+        displayInOrder(root);
+        std::cout << std::endl;
+    }
+
+    // Helper function to recursively display the tree using inorder traversal
+    void displayInOrder(Node* node) const {
+        if (node == nullptr)
+            return;
+        displayInOrder(node->left);
+        std::cout << node->data << " ";
+        displayInOrder(node->right);
+    }
+};
+
+int main() {
+    // Create a binary search tree
+    BinarySearchTree bst;
+    bst.insert(50);
+    bst.insert(30);
+    bst.insert(70);
+    bst.insert(20);
+    bst.insert(40);
+
+    // Display the original tree
+    std::cout << "Original Tree (Inorder Traversal): ";
+    bst.displayInOrder();
+
+    // Create a deep copy of the tree
+    BinarySearchTree bstCopy(bst);
+
+    // Display the copied tree
+    std::cout << "Copied Tree (Inorder Traversal): ";
+    bstCopy.displayInOrder();
+
+    return 0;
+}
