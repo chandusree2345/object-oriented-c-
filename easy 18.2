@@ -1,0 +1,18 @@
+class Animal:
+    def makeSound(self):
+        pass  # Virtual method, to be overridden by derived classes
+
+class Dog(Animal):
+    def makeSound(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def makeSound(self):
+        return "Meow!"
+
+# Example usage:
+dog = Dog()
+cat = Cat()
+
+print("Dog says:", dog.makeSound())
+print("Cat says:", cat.makeSound())
