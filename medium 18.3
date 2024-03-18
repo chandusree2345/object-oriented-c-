@@ -1,0 +1,44 @@
+class Employee:
+    def __init__(self, name, emp_id, salary):
+        self.name = name
+        self.emp_id = emp_id
+        self.salary = salary
+
+    def display_details(self):
+        print("Employee Name:", self.name)
+        print("Employee ID:", self.emp_id)
+        print("Salary:", self.salary)
+
+
+class Manager(Employee):
+    def __init__(self, name, emp_id, salary, department):
+        super().__init__(name, emp_id, salary)
+        self.department = department
+
+    def display_details(self):
+        super().display_details()
+        print("Department:", self.department)
+        print("Position: Manager")
+
+
+class Worker(Employee):
+    def __init__(self, name, emp_id, salary, project):
+        super().__init__(name, emp_id, salary)
+        self.project = project
+
+    def display_details(self):
+        super().display_details()
+        print("Project:", self.project)
+        print("Position: Worker")
+
+
+# Example usage:
+
+manager1 = Manager("John Doe", 1001, 80000, "Sales")
+worker1 = Worker("Alice Smith", 2001, 50000, "Software Development")
+
+print("Manager Details:")
+manager1.display_details()
+
+print("\nWorker Details:")
+worker1.display_details()
