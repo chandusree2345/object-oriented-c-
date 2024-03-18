@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cstring>
+
+class String {
+private:
+    char *str; // Pointer to dynamically allocated string
+
+public:
+    // Default constructor
+    String() : str(nullptr) {}
+
+    // Parameterized constructor
+    String(const char *s) {
+        if (s != nullptr) {
+            int length = std::strlen(s);
+            str = new char[length + 1]; // Allocate memory for string and null terminator
+            std::strcpy(str, s); // Copy string to allocated memory
+        } else {
+            str = nullptr;
+        }
+    }
+
+    // Copy constructor (deep copy)
+    String(const String& other) {
+        if (other.str != nullptr) {
+            int length = std::strlen(other.str);
+            str = new char[length + 1]; // Allocate memory for string and null terminator
+            std::strcpy(str, other.str); // Copy string to allocated memory
+        } else {
+            str = nullptr;
+        }
+    }
+
+    // Destructor
+    ~String() {
+        delete[] str; // Deallocate dynamically allocated memory
+    }
+
+    // Getter method to access string
+    const char* getStr() const {
+        return str;
+    }
+};
+
+int main() {
+    // Creating a String object
+    String s1("Hello");
+
+    // Creating another String object using copy constructor
+    String s2 = s1;
+
+    // Displaying the strings
+    std::cout << "s1: " << s1.getStr() << std::endl;
+    std::cout << "s2: " << s2.getStr() << std::endl;
+
+    return 0;
+}
