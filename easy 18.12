@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+
+// Class Student with private member variables name and grade
+class Student {
+private:
+    std::string name;
+    char grade;
+
+public:
+    // Constructor
+    Student(std::string n, char g) {
+        name = n;
+        grade = g;
+    }
+
+    // Function to display details using the this pointer
+    void displayDetails() {
+        std::cout << "Student Name: " << this->name << std::endl;
+        std::cout << "Student Grade: " << this->grade << std::endl;
+    }
+};
+
+int main() {
+    std::string name;
+    char grade;
+
+    std::cout << "Enter student name: ";
+    std::getline(std::cin, name);
+    std::cout << "Enter student grade: ";
+    std::cin >> grade;
+
+    // Creating an object of the Student class
+    Student student(name, grade);
+
+    // Displaying details using the object's member function
+    student.displayDetails();
+
+    return 0;
+}
