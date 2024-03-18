@@ -1,0 +1,105 @@
+#include <iostream>
+
+class Stack {
+private:
+    struct Node {
+        int data;
+        Node* next;
+
+        Node(int val) : data(val), next(nullptr) {}
+    };
+
+    Node* top; // Pointer to the top of the stack
+
+    // Helper function to perform deep copy of the stack
+    void copyStack(const Stack& other) {
+        Node* otherCurrent = other.top;
+        Node* thisPrev = nullptr;
+        top = nullptr;
+
+        while (otherCurrent != nullptr) {
+            Node* newNode = new Node(otherCurrent->data);
+            if (top == nullptr)
+                top = newNode;
+            else
+                thisPrev->next = newNode;
+
+            thisPrev = newNode;
+            otherCurrent = otherCurrent->next;
+        }
+    }
+
+    // Helper function to destroy the stack
+    void destroyStack() {
+        while (top != nullptr) {
+            Node* temp = top;
+            top = top->next;
+            delete temp;
+        }
+    }
+
+public:
+    // Constructor
+    Stack() : top(nullptr) {}
+
+    // Copy constructor (deep copy)
+    Stack(const Stack& other) {
+        copyStack(other);
+    }
+
+    // Destructor
+    ~Stack() {
+        destroyStack();
+    }
+
+    // Method to push a value onto the stack
+    void push(int value) {
+        Node* newNode = new Node(value);
+        newNode->next = top;
+        top = newNode;
+    }
+
+    // Method to pop a value from the stack
+    int pop() {
+        if (isEmpty()) {
+            std::cerr << "Error: Stack is empty." << std::endl;
+            return -1; // Return a default value indicating error
+        }
+        int poppedValue = top->data;
+        Node* temp = top;
+        top = top->next;
+        delete temp;
+        return poppedValue;
+    }
+
+    // Method to check if the stack is empty
+    bool isEmpty() const {
+        return top == nullptr;
+    }
+};
+
+int main() {
+    // Creating a stack
+    Stack originalStack;
+    originalStack.push(1);
+    originalStack.push(2);
+    originalStack.push(3);
+
+    // Copying the stack
+    Stack copiedStack(originalStack);
+
+    // Displaying the original and copied stacks
+    std::cout << "Original Stack: ";
+    while (!originalStack.isEmpty()) {
+        std::cout << originalStack.pop() << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Copied Stack: ";
+    while (!copiedStack.isEmpty()) {
+        std::cout << copiedStack.pop() << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
