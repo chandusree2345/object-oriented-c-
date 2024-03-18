@@ -1,0 +1,19 @@
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+class Student(Person):
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)
+        self.grade = grade
+
+# Example usage
+person1 = Person("Alice", 25)
+print("Person Name:", person1.name)
+print("Person Age:", person1.age)
+
+student1 = Student("Bob", 20, "A")
+print("\nStudent Name:", student1.name)
+print("Student Age:", student1.age)
+print("Student Grade:", student1.grade)
