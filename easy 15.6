@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+
+class Person {
+private:
+    std::string name;
+    int age;
+
+public:
+    // Constructor
+    Person(std::string name, int age) : name(name), age(age) {}
+
+    // Destructor
+    ~Person() {
+        std::cout << "Goodbye, " << name << "!" << std::endl;
+    }
+
+    // Method to display person information
+    void display() {
+        std::cout << "Name: " << name << ", Age: " << age << std::endl;
+    }
+};
+
+int main() {
+    // Demonstration of Person objects destruction
+    {
+        Person person1("Alice", 30);
+        Person person2("Bob", 25);
+        Person person3("Charlie", 35);
+
+        std::cout << "Displaying person information:" << std::endl;
+        person1.display();
+        person2.display();
+        person3.display();
+    } // Objects go out of scope here and will be destroyed
+
+    // Further code execution
+    std::cout << "End of program." << std::endl;
+
+    return 0;
+}
