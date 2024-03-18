@@ -1,0 +1,36 @@
+#include <iostream>
+
+// Base class Shape with a virtual function draw()
+class Shape {
+public:
+    virtual void draw() {
+        std::cout << "Drawing a generic shape" << std::endl;
+    }
+};
+
+// Derived class Circle with its own implementation of draw()
+class Circle : public Shape {
+public:
+    void draw() override {
+        std::cout << "Drawing a circle" << std::endl;
+    }
+};
+
+int main() {
+    // Creating objects of Shape and Circle classes
+    Shape shape;
+    Circle circle;
+
+    // Creating a pointer to the base class Shape
+    Shape *ptr;
+
+    // Pointing the pointer to the base class object and calling draw()
+    ptr = &shape;
+    ptr->draw();  // Calls the base class version of draw()
+
+    // Pointing the pointer to the derived class object and calling draw()
+    ptr = &circle;
+    ptr->draw();  // Calls the derived class version of draw()
+
+    return 0;
+}
