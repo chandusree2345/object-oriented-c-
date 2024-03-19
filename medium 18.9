@@ -1,0 +1,62 @@
+#include <iostream>
+#include <cmath>
+
+class Shape {
+public:
+    virtual void draw() const = 0; // Pure virtual function
+};
+
+class Circle : public Shape {
+private:
+    double radius;
+public:
+    Circle(double r) : radius(r) {}
+
+    void draw() const override {
+        std::cout << "Drawing Circle with radius " << radius << std::endl;
+    }
+};
+
+class Rectangle : public Shape {
+private:
+    double width, height;
+public:
+    Rectangle(double w, double h) : width(w), height(h) {}
+
+    void draw() const override {
+        std::cout << "Drawing Rectangle with width " << width << " and height " << height << std::endl;
+    }
+};
+
+class Triangle : public Shape {
+private:
+    double side1, side2, side3;
+public:
+    Triangle(double s1, double s2, double s3) : side1(s1), side2(s2), side3(s3) {}
+
+    void draw() const override {
+        std::cout << "Drawing Triangle with sides " << side1 << ", " << side2 << ", " << side3 << std::endl;
+    }
+};
+
+int main() {
+    const int size = 3;
+    Shape* shapes[size];
+
+    // Dynamically allocate objects of different shapes
+    shapes[0] = new Circle(5);
+    shapes[1] = new Rectangle(4, 6);
+    shapes[2] = new Triangle(3, 4, 5);
+
+    // Call draw function for each shape
+    for (int i = 0; i < size; ++i) {
+        shapes[i]->draw();
+    }
+
+    // Free dynamically allocated memory
+    for (int i = 0; i < size; ++i) {
+        delete shapes[i];
+    }
+
+    return 0;
+}
