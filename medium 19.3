@@ -1,0 +1,45 @@
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+
+class Array {
+private:
+    std::vector<int> elements;
+
+public:
+    // Function to insert an element into the array
+    void insert(int value) {
+        elements.push_back(value);
+    }
+
+    // Function to retrieve an element by index
+    int retrieve(int index) {
+        if (index < 0 || index >= elements.size()) {
+            throw std::out_of_range("Invalid index");
+        }
+        return elements[index];
+    }
+};
+
+int main() {
+    Array arr;
+
+    // Insert elements into the array
+    arr.insert(10);
+    arr.insert(20);
+    arr.insert(30);
+
+    // Retrieve elements by index and validate
+    try {
+        std::cout << "Element at index 0: " << arr.retrieve(0) << std::endl;
+        std::cout << "Element at index 1: " << arr.retrieve(1) << std::endl;
+        std::cout << "Element at index 2: " << arr.retrieve(2) << std::endl;
+
+        // Try to retrieve an element with an invalid index
+        std::cout << "Element at index 3: " << arr.retrieve(3) << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
