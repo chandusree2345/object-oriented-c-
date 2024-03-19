@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+#include <stdexcept>
+
+long long calculateSumFromFile(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        throw std::runtime_error("Error opening file");
+    }
+
+    long long sum = 0;
+    int num;
+    while (file >> num) {
+        // Check for integer overflow before adding
+        if ((sum > 0 && num > LLONG_MAX - sum) || (sum < 0 && num < LLONG_MIN - sum)) {
+            throw std::overflow_error("Arithmetic overflow");
+        }
+        sum += num;
+    }
+
+    if (!file.eof()) {
+        throw std::invalid_argument("Invalid input format");
+    }
+
+    return sum;
+}
+
+int main() {
+    try {
+        // Test with a valid file
+        std::string validFile = "valid_input.txt";
+        std::cout << "Sum of integers in " << validFile << ": " << calculateSumFromFile(validFile) << std::endl;
+
+        // Test with an invalid file format
+        std::string invalidFile = "invalid_input.txt";
+        std::cout << "Sum of integers in " << invalidFile << ": " << calculateSumFromFile(invalidFile) << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
