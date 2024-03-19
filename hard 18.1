@@ -1,0 +1,44 @@
+class BankAccount:
+    def __init__(self, accountNumber, balance=0):
+        self.accountNumber = accountNumber
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"Deposited {amount} into account {self.accountNumber}. New balance is {self.balance}")
+
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+            print(f"Withdrew {amount} from account {self.accountNumber}. New balance is {self.balance}")
+        else:
+            print("Insufficient funds")
+
+class SavingsAccount(BankAccount):
+    def __init__(self, accountNumber, balance=0):
+        super().__init__(accountNumber, balance)
+
+    # No additional methods needed, inherits deposit and withdraw from BankAccount
+
+
+class CurrentAccount(BankAccount):
+    def __init__(self, accountNumber, balance=0, overdraft_limit=1000):
+        super().__init__(accountNumber, balance)
+        self.overdraft_limit = overdraft_limit
+
+    def withdraw(self, amount):
+        if self.balance + self.overdraft_limit >= amount:
+            self.balance -= amount
+            print(f"Withdrew {amount} from account {self.accountNumber}. New balance is {self.balance}")
+        else:
+            print("Insufficient funds and overdraft limit reached")
+
+
+# Example usage:
+savings_acc = SavingsAccount("SA12345", 1000)
+savings_acc.deposit(500)
+savings_acc.withdraw(200)
+
+current_acc = CurrentAccount("CA67890", 2000)
+current_acc.withdraw(2500)  # This should trigger overdraft limit
+current_acc.withdraw(1500)  # This should go through with overdraft limit
