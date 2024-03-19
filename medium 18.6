@@ -1,0 +1,50 @@
+class BankAccount:
+    def __init__(self, accountNumber, balance=0):
+        self.accountNumber = accountNumber
+        self.balance = balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            print(f"Deposited {amount} into account {self.accountNumber}. New balance: {self.balance}")
+        else:
+            print("Invalid deposit amount.")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            print(f"Withdrew {amount} from account {self.accountNumber}. New balance: {self.balance}")
+        else:
+            print("Insufficient funds or invalid withdrawal amount.")
+
+class SavingsAccount(BankAccount):
+    def __init__(self, accountNumber, balance=0, interest_rate=0.05):
+        super().__init__(accountNumber, balance)
+        self.interest_rate = interest_rate
+    
+    def apply_interest(self):
+        interest_amount = self.balance * self.interest_rate
+        self.deposit(interest_amount)
+        print(f"Interest applied to account {self.accountNumber}. New balance: {self.balance}")
+
+class CurrentAccount(BankAccount):
+    def __init__(self, accountNumber, balance=0, overdraft_limit=1000):
+        super().__init__(accountNumber, balance)
+        self.overdraft_limit = overdraft_limit
+    
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance + self.overdraft_limit:
+            self.balance -= amount
+            print(f"Withdrew {amount} from account {self.accountNumber}. New balance: {self.balance}")
+        else:
+            print("Insufficient funds or invalid withdrawal amount.")
+
+# Example usage:
+savings_acc = SavingsAccount("SA123")
+savings_acc.deposit(1000)
+savings_acc.apply_interest()
+savings_acc.withdraw(200)
+
+current_acc = CurrentAccount("CA456", 500, 1000)
+current_acc.withdraw(800)
+current_acc.withdraw(800)
