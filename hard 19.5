@@ -1,0 +1,40 @@
+#include <iostream>
+#include <stdexcept>
+
+class BankAccount {
+private:
+    int accountNumber;
+    double balance;
+
+public:
+    BankAccount(int accNum, double initialBalance) : accountNumber(accNum), balance(initialBalance) {}
+
+    void withdraw(double amount) {
+        if (amount <= 0) {
+            throw std::invalid_argument("Invalid withdrawal amount");
+        }
+        if (amount > balance) {
+            throw std::runtime_error("Insufficient balance");
+        }
+        // Additional conditions for error scenarios can be added here
+
+        // Perform the withdrawal
+        balance -= amount;
+        std::cout << "Withdrawal of $" << amount << " successful. New balance: $" << balance << std::endl;
+    }
+};
+
+int main() {
+    BankAccount account(123456, 1000.0);
+
+    try {
+        // Test withdrawal with various amounts
+        account.withdraw(500); // Valid withdrawal
+        account.withdraw(1500); // Insufficient balance
+        account.withdraw(-100); // Invalid withdrawal amount
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
