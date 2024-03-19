@@ -1,0 +1,23 @@
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    def displayInfo(self):
+        print(f"Name: {self.name}, Age: {self.age}")
+
+class Student(Person):
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)
+        self.grade = grade
+    
+    def displayInfo(self):
+        super().displayInfo()
+        print(f"Grade: {self.grade}")
+
+# Example usage:
+person1 = Person("John", 25)
+person1.displayInfo()
+
+student1 = Student("Alice", 20, "A")
+student1.displayInfo()
