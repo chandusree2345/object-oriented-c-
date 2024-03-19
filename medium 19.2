@@ -1,0 +1,26 @@
+#include <iostream>
+#include <stdexcept>
+
+class TemperatureConverter {
+public:
+    double convertToFahrenheit(double celsius) {
+        if (celsius < -273.15) {
+            throw std::invalid_argument("Temperature cannot be below absolute zero (-273.15°C)");
+        }
+        return (celsius * 9 / 5) + 32;
+    }
+};
+
+int main() {
+    TemperatureConverter converter;
+
+    try {
+        double celsius = 25;
+        double fahrenheit = converter.convertToFahrenheit(celsius);
+        std::cout << "Fahrenheit temperature: " << fahrenheit << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
