@@ -1,0 +1,36 @@
+class Vector2D:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __add__(self, other):
+        return Vector2D(self.x + other.x, self.y + other.y)
+    
+    def __sub__(self, other):
+        return Vector2D(self.x - other.x, self.y - other.y)
+    
+    def __mul__(self, scalar):
+        return Vector2D(self.x * scalar, self.y * scalar)
+    
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+
+
+# Test cases
+if __name__ == "__main__":
+    # Create vectors
+    vector1 = Vector2D(3, 4)
+    vector2 = Vector2D(1, 2)
+    
+    # Addition
+    result_addition = vector1 + vector2
+    print("Addition:", result_addition)
+    
+    # Subtraction
+    result_subtraction = vector1 - vector2
+    print("Subtraction:", result_subtraction)
+    
+    # Scalar multiplication
+    scalar = 2
+    result_scalar_mul = vector1 * scalar
+    print("Scalar Multiplication:", result_scalar_mul)
