@@ -1,0 +1,52 @@
+import math
+
+class Shape:
+    def draw(self):
+        raise NotImplementedError("draw() method must be implemented in subclass")
+
+    def calculateArea(self):
+        raise NotImplementedError("calculateArea() method must be implemented in subclass")
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def draw(self):
+        print("Drawing Circle")
+
+    def calculateArea(self):
+        return math.pi * self.radius ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def draw(self):
+        print("Drawing Rectangle")
+
+    def calculateArea(self):
+        return self.width * self.height
+
+class Triangle(Shape):
+    def __init__(self, base, height):
+        self.base = base
+        self.height = height
+
+    def draw(self):
+        print("Drawing Triangle")
+
+    def calculateArea(self):
+        return 0.5 * self.base * self.height
+
+# Create an array of pointers to objects of type Shape
+shapes = [Circle(5), Rectangle(4, 6), Triangle(3, 4)]
+
+# Test draw() function for each shape
+for shape in shapes:
+    shape.draw()
+
+# Test calculateArea() function for each shape
+for shape in shapes:
+    area = shape.calculateArea()
+    print(f"Area of {shape.__class__.__name__} is {area}")
