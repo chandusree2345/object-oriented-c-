@@ -1,0 +1,23 @@
+class Employee:
+    def __init__(self, emp_id, name):
+        self.id = emp_id
+        self.name = name
+    
+    def printDetails(self):
+        print("Employee Details: ID:", self.id, ", Name:", self.name)
+
+
+class Manager(Employee):
+    def __init__(self, emp_id, name, department):
+        super().__init__(emp_id, name)
+        self.department = department
+    
+    def printDetails(self):
+        super().printDetails()
+        print("Department:", self.department)
+
+
+# Test case
+if __name__ == "__main__":
+    emp_ptr = Manager(101, "John", "HR")
+    emp_ptr.printDetails()
