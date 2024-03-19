@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cmath> // For math constants
+
+class Shape {
+public:
+    virtual void displayArea() const = 0; // Virtual function for displaying area
+    virtual ~Shape() {} // Virtual destructor
+};
+
+class Rectangle : public Shape {
+private:
+    double length;
+    double width;
+
+public:
+    Rectangle(double l, double w) : length(l), width(w) {}
+
+    void displayArea() const override {
+        double area = length * width;
+        std::cout << "Rectangle Area: " << area << std::endl;
+    }
+};
+
+class Circle : public Shape {
+private:
+    double radius;
+
+public:
+    Circle(double r) : radius(r) {}
+
+    void displayArea() const override {
+        double area = M_PI * radius * radius;
+        std::cout << "Circle Area: " << area << std::endl;
+    }
+};
+
+int main() {
+    Shape* shapes[2];
+
+    // Create objects of derived classes
+    Rectangle rectangle(5.0, 3.0);
+    Circle circle(4.0);
+
+    // Assign addresses of derived class objects to base class pointers
+    shapes[0] = &rectangle;
+    shapes[1] = &circle;
+
+    // Call displayArea() using base class pointers
+    for (int i = 0; i < 2; ++i) {
+        shapes[i]->displayArea();
+    }
+
+    return 0;
+}
