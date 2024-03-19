@@ -1,0 +1,44 @@
+class Student:
+    def __init__(self, roll_number, marks):
+        self.roll_number = roll_number
+        self.marks = marks
+
+class StudentArray:
+    def __init__(self, size):
+        try:
+            self.array = [None] * size
+        except MemoryError:
+            raise Exception("Memory allocation failed")
+
+    def add_student(self, index, student):
+        self.array[index] = student
+
+    def get_student(self, index):
+        return self.array[index]
+
+# Test case
+def test_student_array():
+    try:
+        size = int(input("Enter the size of the array: "))
+        student_array = StudentArray(size)
+
+        # Populate the array with student details
+        for i in range(size):
+            roll_number = input(f"Enter roll number for student {i+1}: ")
+            marks = float(input(f"Enter marks for student {i+1}: "))
+            student = Student(roll_number, marks)
+            student_array.add_student(i, student)
+
+        # Verify if the student details are stored correctly
+        print("\nStudent Details:")
+        for i in range(size):
+            student = student_array.get_student(i)
+            print(f"Roll Number: {student.roll_number}, Marks: {student.marks}")
+
+    except ValueError:
+        print("Invalid input! Please enter a valid number.")
+    except Exception as e:
+        print("An error occurred:", e)
+
+# Run the test case
+test_student_array()
